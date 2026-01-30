@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio|Vivid Graphics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gold-accent { color: #D4AF37; }
+        .bg-gold { background-color: #D4AF37; }
+        
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .masonry {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) { .masonry { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry { column-count: 3; } }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #D4AF37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        #modal {
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+        .brand-logo {
+            height: 4.5rem; /* Matches text-xl roughly */
+            width: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img src="uploads/vividlogo.jpg" alt="Vivid Graphics Logo" class="brand-logo" onerror="this.style.display='none'">
+                <!--<span class="text-xl font-bold tracking-tight uppercase">Vivid <span class="gold-accent">Graphics</span></span>-->
+            </div>
+            
+      
+
+            <button onclick="toggleModal()" class="bg-slate-900 text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-800 transition-all uppercase tracking-widest">
+                Consult Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl mb-6">Designing Visuals <br><span class="gold-accent italic">That Speak for You</span></h1>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg mb-10 font-light">
+                Blending creativity and strategy to build designs that connect,inspire,and stand out.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#portfolio" class="bg-gold text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-500 transition-colors">View Portfolio</a>
+                <a href="#contact" class="border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-colors">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
+    <section id="portfolio" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-16 text-center">
+            <span class="gold-accent uppercase tracking-widest text-sm font-bold">Our Work</span>
+            <h2 class="text-4xl mt-2">Latest Design Portfolio</h2>
+            <div class="w-20 h-1 bg-gold mx-auto mt-4"></div>
+        </div>
+
+        <div class="masonry">
+            <!-- Item 1 -->
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/vinylport1.jpg" alt="Vinylport" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">Vinyl</h3>
+                    <p class="text-sm text-slate-300">Mangalore, IN</p>
+                </div>
+            </div>
+
+
+            <!-- Item 4 -->
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/flexport1.jpg" alt="Dining Room" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">flex</h3>
+                    <p class="text-sm text-slate-300">Digital Feight solution</p>
+                </div>
+            </div>
+
+            <!-- Item 
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="https://images.unsplash.com/photo-1513584684374-8bdb7483fe8f?auto=format&fit=crop&q=80&w=800" alt="Home Office" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                  
+                </div>
+            </div>-->
+
+            <!-- Item 6 -->
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/jerseyport1.jpg" alt="Pooja Room" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">Jersey</h3>
+                    <p class="text-sm text-slate-300">Modern Athletic Design</p>
+                </div>
+            </div>
+
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/jerseyport2.jpg" alt="Pooja Room" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">Jersey</h3>
+                    <p class="text-sm text-slate-300">Modern Athletic Design</p>
+                </div>
+            </div>
+
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/inshopport1.jpg" alt="Pooja Room" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">Inshop</h3>
+                    <p class="text-sm text-slate-300">Creative Wall Graphics</p>
+                </div>
+            </div>
+
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/cutsomport3.jpg" alt="Pooja Room" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">Customport</h3>
+                    <p class="text-sm text-slate-300">Custom crafted Design</p>
+                </div>
+            </div>
+
+             <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/customport2.jpg" alt="Pooja Room" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">Customport</h3>
+                    <p class="text-sm text-slate-300">Custom crafted Design</p>
+                </div>
+            </div>
+
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/ledport2.jpg" alt="Pooja Room" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">Ledport</h3>
+                    <p class="text-sm text-slate-300">Modern Lighted Design</p>
+                </div>
+            </div>
+
+            <div class="gallery-item relative group overflow-hidden rounded-2xl shadow-lg">
+                <img src="uploads/digitalport1.jpg" alt="Pooja Room" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    <h3 class="text-xl">Digitalport</h3>
+                    <p class="text-sm text-slate-300">High Impact Visual Design Design</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-4xl">Our Specialized Services</h2>
+                <p class="text-slate-500 mt-2">Everything you need to build a strong visual identity.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <i class="fa-solid fa-palette text-3xl gold-accent"></i>
+                    <h3 class="text-xl font-bold mb-2">Brand Identity Design</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Logos, color palettes, and brand guidelines that define your visual identity.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <i class="fa-solid fa-display text-3xl gold-accent"></i>
+                    <h3 class="text-xl font-bold mb-2">Digital Design</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Social media creatives, web banners, and ads designed for maximum engagement.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <i class="fa-solid fa-print text-3xl gold-accent"></i>
+                    <h3 class="text-xl font-bold mb-2">Print Design</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Posters, flyers, brochures, and visiting cards crafted with precision and clarity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-900 text-white pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <span class="text-2xl font-bold uppercase mb-6 block">VIVID <span class="gold-accent">GRAPHICS</span></span>
+                <p class="text-slate-400 text-sm leading-relaxed">Transforming ideas into powerful visual displays. Experts in flex printing, custom jerseys, in-shop branding, and digital print services.</p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Contact Detail</h4>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li><i class="fa-solid fa-location-dot gold-accent mr-3"></i> Thokkottu, Mangalore, Karnataka</li>
+                    <li><i class="fa-solid fa-envelope gold-accent mr-3"></i> vividgraphicsmlor@gmail.com</li>
+                    <li><i class="fa-solid fa-phone gold-accent mr-3"></i> +91 99895645417</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li><a href="abc.php" class="hover:text-gold transition-colors">Home </a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">Service List</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">Consultation</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/vividgraphics.in?igsh=MWIxdzAwZnV0bjBnNQ==" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/10 pt-10 text-center text-slate-500 text-xs">
+            &copy; 2026 Vivid Graphics. Crafted with passion.
+        </div>
+    </footer>
+
+    <!-- Quote Modal -->
+    <div id="modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/60">
+        <div class="bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl relative">
+            <button onclick="toggleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-900"><i class="fa-solid fa-times text-xl"></i></button>
+            <h3 class="text-2xl font-bold mb-2">Request a Quote</h3>
+            <p class="text-slate-500 text-sm mb-6">Tell us about your project and we'll get back to you within 24 hours.</p>
+            
+            <form class="space-y-4" onsubmit="event.preventDefault(); showSuccess();">
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-wider mb-1 block">Full Name</label>
+                    <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold">
+                </div>
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-wider mb-1 block">Phone Number</label>
+                    <input type="tel" placeholder="+91 00000 00000" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold">
+                </div>
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-wider mb-1 block">Project Type</label>
+                    <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold">
+                        <option>Flex Printing</option>
+                        <option>Jersey Design</option>
+                        <option>In shop Branding</option>
+                        <option>Digital Prining</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-colors uppercase tracking-widest text-sm">
+                    Submit Request
+                </button>
+            </form>
+            <div id="success-msg" class="hidden mt-4 p-4 bg-green-50 text-green-700 text-sm rounded-xl text-center">
+                Thank you! We'll reach out to you shortly.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('modal');
+            const isVisible = modal.style.display === 'flex';
+            modal.style.display = isVisible ? 'none' : 'flex';
+            
+            if (!isVisible) {
+                document.getElementById('success-msg').classList.add('hidden');
+            }
+        }
+
+        function showSuccess() {
+            document.getElementById('success-msg').classList.remove('hidden');
+            setTimeout(() => {
+                toggleModal();
+            }, 2000);
+        }
+
+        // Close modal on click outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                toggleModal();
+            }
+        }
+    </script>
+</body>
+</html>

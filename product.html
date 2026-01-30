@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customize Product | Vivid Graphics</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ================= BACKGROUND ================= */
+body {
+    background: linear-gradient(120deg, #000, #111, #222);
+    animation: bgMove 10s infinite alternate;
+}
+
+@keyframes bgMove {
+    from { background-position: left; }
+    to { background-position: right; }
+}
+
+/* ================= CONTAINER ================= */
+.customize-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+    animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= GRID ================= */
+.customize-grid {
+    display: flex;
+    gap: 40px;
+}
+
+.options, .order-summary {
+    flex: 1;
+    animation: slideIn .8s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ================= FORM ================= */
+.form-group {
+    margin-bottom: 22px;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    transition: all .3s ease;
+}
+
+select:focus, input:focus {
+    border-color: #ffcc00;
+    box-shadow: 0 0 0 3px rgba(255,204,0,.2);
+    outline: none;
+}
+
+/* ================= BUTTON ================= */
+.primary-btn {
+    padding: 12px 26px;
+    background-color: #ffcc00;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all .3s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255,204,0,.6);
+}
+
+.primary-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* ================= PREVIEW ================= */
+.preview-box {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    min-height: 300px;
+    border-radius: 14px;
+    background: linear-gradient(145deg,#f9f9f9,#eee);
+    animation: floatBox 4s ease-in-out infinite;
+}
+
+@keyframes floatBox {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+
+.preview-box img {
+    max-width: 100%;
+    border-radius: 10px;
+    animation: zoomIn .6s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ================= SUMMARY ================= */
+.order-summary {
+    background: #111;
+    color: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: inset 0 0 40px rgba(255,204,0,.08);
+}
+
+.order-summary h3 {
+    color: #ffcc00;
+    margin-top: 20px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .customize-grid {
+        flex-direction: column;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="logo">Vivid Graphics</div>
+<nav class="nav-links">
+<a href="index.php">Home</a>
+<a href="#">Products</a>
+<a href="#">Contact</a>
+</nav>
+</header>
+
+<main class="content">
+<h2 style="text-align:center; margin-bottom:30px; color:#ffcc00;">Customize Your Product</h2>
+
+<div class="customize-container">
+<div class="customize-grid">
+
+<form class="options" onsubmit="return false;">
+
+<div class="form-group">
+<label>Select Product</label>
+<select id="product" name="product">
+<option>Visiting Card</option>
+<option>Flex Printing</option>
+<option>Vinyl Printing</option>
+<option>Digital Printing</option>
+<option>LED Signboards</option>
+<option>Inshop Branding</option>
+<option>Jersey</option>
+<option>Custom Gifts</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Size</label>
+<select id="size" name="size"></select>
+</div>
+
+<div class="form-group" id="customSizeGroup" style="display:none;">
+<label>Enter Custom Size</label>
+<input type="text" id="customSize" name="custom_size" placeholder="e.g. 3x2 ft">
+</div>
+
+<div class="form-group">
+<label>Quantity</label>
+<input type="number" id="quantity" name="quantity" value="1" min="1">
+</div>
+
+<div class="form-group">
+<label>Upload Design</label>
+<input type="file" id="upload" name="design" accept="image/*">
+</div>
+
+<button type="button" class="primary-btn" id="addToCartBtn" disabled>
+Add to Cart
+</button>
+
+</form>
+
+<button class="primary-btn" id="checkoutBtn" disabled>
+Checkout All
+</button>
+
+<div class="order-summary">
+<div class="preview-box">
+<p id="preview-text">Your design preview will appear here</p>
+<img id="preview-image">
+</div>
+
+<h3>Order Summary</h3>
+<p id="summary-product">Product:</p>
+<p id="summary-size">Size:</p>
+<p id="summary-quantity">Quantity:</p>
+</div>
+
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+
+
+</div>
+</div>
+</main>
+
+<footer class="footer">
+<p>© 2025 Vivid Graphics</p>
+</footer>
+
+<script>
+/* ================= ELEMENTS ================= */
+const productSelect = document.getElementById("product");
+const sizeSelect = document.getElementById("size");
+const quantityInput = document.getElementById("quantity");
+const uploadInput = document.getElementById("upload");
+const previewImage = document.getElementById("preview-image");
+const previewText = document.getElementById("preview-text");
+const customSizeGroup = document.getElementById("customSizeGroup");
+const customSizeInput = document.getElementById("customSize");
+
+const summaryProduct = document.getElementById("summary-product");
+const summarySize = document.getElementById("summary-size");
+const summaryQuantity = document.getElementById("summary-quantity");
+
+const addToCartBtn = document.getElementById("addToCartBtn");
+const checkoutBtn = document.getElementById("checkoutBtn");
+const cartItemsDiv = document.getElementById("cartItems");
+
+/* ================= DATA ================= */
+const sizeOptions = {
+    paper: ["A4", "A3", "Custom"],
+    tshirt: ["S", "M", "L", "XL", "XXL"]
+};
+
+const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/jpg"];
+const maxSize = 5 * 1024 * 1024;
+
+let uploaded = false;
+let cart = [];
+
+/* ================= FUNCTIONS ================= */
+
+function updateSizeOptions() {
+    sizeSelect.innerHTML = "";
+    const product = productSelect.value;
+
+    const options =
+        product === "Jersey"
+            ? sizeOptions.tshirt
+            : sizeOptions.paper;
+
+    options.forEach(size => {
+        const option = document.createElement("option");
+        option.value = size;
+        option.textContent = size;
+        sizeSelect.appendChild(option);
+    });
+
+    customSizeGroup.style.display = "none";
+    updateSummary();
+}
+
+function updateSummary() {
+    const size =
+        sizeSelect.value === "Custom" && customSizeInput.value
+            ? customSizeInput.value
+            : sizeSelect.value;
+
+    summaryProduct.textContent = `Product: ${productSelect.value}`;
+    summarySize.textContent = `Size: ${size}`;
+    summaryQuantity.textContent = `Quantity: ${quantityInput.value}`;
+}
+
+function checkAddToCart() {
+    addToCartBtn.disabled = !(uploaded && quantityInput.value > 0);
+}
+
+function resetUpload() {
+    uploadInput.value = "";
+    uploaded = false;
+    previewImage.src = "";
+    previewText.style.display = "block";
+    checkAddToCart();
+}
+
+function resetForm() {
+    resetUpload();
+    quantityInput.value = 1;
+    updateSummary();
+}
+
+/* ================= EVENTS ================= */
+
+productSelect.addEventListener("change", updateSizeOptions);
+
+sizeSelect.addEventListener("change", () => {
+    customSizeGroup.style.display =
+        sizeSelect.value === "Custom" ? "block" : "none";
+    updateSummary();
+});
+
+customSizeInput.addEventListener("input", updateSummary);
+
+quantityInput.addEventListener("input", () => {
+    updateSummary();
+    checkAddToCart();
+});
+
+uploadInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return resetUpload();
+
+    if (!allowedTypes.includes(file.type)) {
+        alert("Only JPG, PNG, WEBP allowed");
+        return resetUpload();
+    }
+
+    if (file.size > maxSize) {
+        alert("Max file size is 5MB");
+        return resetUpload();
+    }
+
+    uploaded = true;
+    const reader = new FileReader();
+    reader.onload = () => {
+        previewImage.src = reader.result;
+        previewText.style.display = "none";
+        checkAddToCart();
+    };
+    reader.readAsDataURL(file);
+});
+
+/* ================= CART ================= */
+
+addToCartBtn.addEventListener("click", () => {
+
+    const imageSrc = previewImage.src;
+
+    if (!imageSrc) {
+        alert("Please upload a design");
+        return;
+    }
+
+    cart.push({
+        product: productSelect.value,
+        size:
+            sizeSelect.value === "Custom"
+                ? customSizeInput.value
+                : sizeSelect.value,
+        quantity: quantityInput.value,
+        image: imageSrc   // ✅ Base64 stays ONLY in frontend
+    });
+
+    renderCart();
+    resetForm();
+});
+
+
+function renderCart() {
+    cartItemsDiv.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        cartItemsDiv.innerHTML += `
+            <div style="border:1px solid #444;padding:12px;margin-bottom:12px;border-radius:8px;">
+                <strong>${item.product}</strong><br>
+                Size: ${item.size}<br>
+                Qty: ${item.quantity}<br><br>
+                <img src="${item.image}" style="width:80px;border:1px solid #ccc;"><br><br>
+                <button type="button" onclick="removeItem(${index})">Remove</button>
+            </div>
+        `;
+    });
+
+    checkoutBtn.disabled = cart.length < 1;
+}
+
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    renderCart();
+}
+
+/* ================= CHECKOUT ================= */
+
+checkoutBtn.addEventListener("click", () => {
+    fetch("save_cart.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cart)
+    })
+        .then(res => res.json())
+        .then(data => {
+    if (!data.success) {
+        console.log("Server response:", data);
+        alert("Order save failed");
+        return;
+    }
+
+    const orderId = data.order_id; // ✅ GENERATED ORDER ID
+
+    let message = `🛒 *New Order – Vivid Graphics*\n`;
+    message += `🆔 *Order ID: VG-${orderId}*\n\n`;
+
+    cart.forEach((item, i) => {
+        message += `${i + 1}. ${item.product}\n`;
+        message += `Size: ${item.size}\n`;
+        message += `Qty: ${item.quantity}\n\n`;
+    });
+
+    message += "📞 Please confirm price & delivery";
+
+    const numbers = [
+        "917899324577"
+    ];
+
+    numbers.forEach((num, index) => {
+        setTimeout(() => {
+            window.open(
+                `https://wa.me/${num}?text=${encodeURIComponent(message)}`,
+                "_blank"
+            );
+        }, index * 600);
+    });
+
+    cart = [];
+    renderCart();
+});
+
+});
+
+/* ================= INIT ================= */
+updateSizeOptions();
+checkAddToCart();
+</script>
+
+
+</body>
+</html>
