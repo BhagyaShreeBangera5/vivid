@@ -387,6 +387,10 @@
         100% { transform: scale(2); opacity: 1; }
     }
 
+
+
+
+    
     /* ================= REVIEWS & STATS ================= */
     .reviews-stats {
         background: #0d0d0d;
